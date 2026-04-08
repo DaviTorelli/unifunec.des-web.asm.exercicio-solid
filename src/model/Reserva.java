@@ -1,50 +1,53 @@
 package model;
 
+//* Importa service */
 import service.CalculadoraReserva;
 
 public class Reserva {
-    String usuario;
-    String sala;
-    String tipoSala;
-    int horas;
-    boolean projetor;
-    String formaPagamento;
+  String usuario;
+  String sala;
+  String tipoSala;
+  int horas;
+  boolean projetor;
+  String formaPagamento;
 
-    public Reserva(String usuario, String sala, String tipoSala, int horas, boolean projetor, String formaPagamento) {
-        this.usuario = usuario;
-        this.sala = sala;
-        this.tipoSala = tipoSala;
-        this.horas = horas;
-        this.projetor = projetor;
-        this.formaPagamento = formaPagamento;
-    }
+  public Reserva(String usuario, String sala, String tipoSala, int horas, boolean projetor, String formaPagamento) {
+    this.usuario = usuario;
+    this.sala = sala;
+    this.tipoSala = tipoSala;
+    this.horas = horas;
+    this.projetor = projetor;
+    this.formaPagamento = formaPagamento;
+  }
 
-    public String getUsuario() {
-        return usuario;
-    }
+  // * Getters *//
 
-    public String getSala() {
-        return sala;
-    }
+  public String getUsuario() {
+    return usuario;
+  }
 
-    public String getTipoSala() {
-        return tipoSala;
-    }
+  public String getSala() {
+    return sala;
+  }
 
-    public int getHoras() {
-        return horas;
-    }
+  public String getTipoSala() {
+    return tipoSala;
+  }
 
-    public boolean isProjetor() {
-        return projetor;
-    }
+  public int getHoras() {
+    return horas;
+  }
 
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
+  public boolean isProjetor() {
+    return projetor;
+  }
 
-    public double getValor() {
-        CalculadoraReserva calculadora = new CalculadoraReserva();
-        return calculadora.calcularTotal(this);
-    }
+  public String getFormaPagamento() {
+    return formaPagamento;
+  }
+
+  public double getValor() {
+    CalculadoraReserva calculadora = new CalculadoraReserva();
+    return calculadora.calcularTotal(this);
+  }
 }
