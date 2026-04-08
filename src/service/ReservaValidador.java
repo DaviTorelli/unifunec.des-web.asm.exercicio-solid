@@ -16,5 +16,9 @@ public class ReservaValidador {
         if (reserva.getHoras() <= 0) {
             throw new IllegalArgumentException("Horas inválidas.");
         }
+
+        if (!reserva.getFormaPagamento().equalsIgnoreCase("pix")) {
+            throw new IllegalArgumentException("Pagamento inválido.");
+        }
     }
 }

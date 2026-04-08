@@ -45,7 +45,7 @@ public class ClasseGenerica {
         if (formaPagamento.equalsIgnoreCase("pix")) {
             System.out.println("Pagamento PIX ok");
         } else {
-            System.out.println("Pagamento inválido"); //TODO falta tratar
+            System.out.println("Pagamento inválido");
             return;
         }
 
