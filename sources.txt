@@ -1,0 +1,14 @@
+src/main/Main.java
+src/model/Pedido.java
+src/service/CalculadoraPedido.java
+src/service/PedidoService.java
+src/service/PedidoValidador.java
+src/repository/PedidoRepositorio.java
+src/repository/PedidoRepositoryMemoria.java
+src/pagamento/Pagamento.java
+src/pagamento/PagamentoPix.java
+src/pagamento/PagamentoCartao.java
+src/pagamento/PagamentoBoleto.java
+src/notificacao/Notificador.java
+src/notificacao/EmailNotificador.java
+src/legacy/PedidoServiceClasseGorda.java

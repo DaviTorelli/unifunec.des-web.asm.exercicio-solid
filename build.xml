@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SolidPedidoNetBeans" default="default" basedir=".">
+    <description>Projeto Java para demonstrar classe gorda e aplicação dos princípios SOLID.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <target name="compile-single">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false" source="${javac.source}" target="${javac.target}" encoding="${source.encoding}">
+            <include name="${javac.includes}"/>
+        </javac>
+    </target>
+
+    <target name="run-single" depends="compile-single">
+        <java classname="${run.class}" fork="true">
+            <classpath>
+                <pathelement path="${build.classes.dir}"/>
+            </classpath>
+        </java>
+    </target>
+</project>

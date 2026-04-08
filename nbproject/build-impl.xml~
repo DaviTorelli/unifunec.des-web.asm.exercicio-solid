@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" basedir=".." default="default" name="SolidPedidoNetBeans-impl">
+    <fail message="Please build using Ant 1.8.0 or higher.">
+        <condition>
+            <not>
+                <antversion atleast="1.8.0"/>
+            </not>
+        </condition>
+    </fail>
+    <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
+    <target name="-pre-init"/>
+    <target name="-init-private" depends="-pre-init"/>
+    <target name="-init-user" depends="-pre-init"/>
+    <target name="-init-project" depends="-pre-init">
+        <property file="nbproject/project.properties"/>
+    </target>
+    <target name="-do-init" depends="-init-project">
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    <target name="-post-init"/>
+    <target name="init" depends="-pre-init,-init-private,-init-user,-init-project,-do-init,-post-init"/>
+
+    <target name="compile-single" depends="init" description="Compile a single file from the project.">
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false" encoding="${source.encoding}" source="${javac.source}" target="${javac.target}" includes="${javac.includes}"/>
+    </target>
+    <target name="run-single" depends="compile-single" description="Run a single main class.">
+        <java classname="${run.class}" fork="true">
+            <classpath>
+                <pathelement path="${run.classpath}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="compile" depends="init" description="Compile project sources.">
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" includeantruntime="false" encoding="${source.encoding}" source="${javac.source}" target="${javac.target}"/>
+    </target>
+    <target name="jar" depends="compile" description="Build JAR.">
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="run" depends="jar" description="Run project.">
+        <java jar="${dist.jar}" fork="true"/>
+    </target>
+    <target name="clean" description="Clean build products.">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    <target name="test" depends="compile" description="No tests configured."/>
+    <target name="javadoc" depends="compile" description="Generate javadocs.">
+        <mkdir dir="${dist.javadoc.dir}"/>
+        <javadoc sourcepath="${src.dir}" destdir="${dist.javadoc.dir}" encoding="${source.encoding}"/>
+    </target>
+</project>
