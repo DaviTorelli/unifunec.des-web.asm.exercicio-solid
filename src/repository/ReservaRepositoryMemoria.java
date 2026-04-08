@@ -2,6 +2,7 @@ package repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.Reserva;
 
 public class ReservaRepositoryMemoria implements ReservaRepositorio {
@@ -16,7 +17,14 @@ public class ReservaRepositoryMemoria implements ReservaRepositorio {
         return dados;
     }
 
-    public List<String> listar() {
-        return reservas;
+    @Override
+    public boolean reservaExistente(Reserva reserva) {
+        for (String r : reservas) {
+            if (r.contains(reserva.getSala())) {
+                System.out.println("Sala já reservada.");
+                return true;
+            }
+        }
+        return false;
     }
 }

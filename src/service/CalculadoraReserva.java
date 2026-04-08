@@ -7,7 +7,6 @@ public class CalculadoraReserva {
     public double calcularTotal(Reserva reserva) {
         double valor = 50 * reserva.getHoras();
 
-        // PEGADINHA
         if (reserva.getTipoSala().equals("laboratorio")) {
             valor += 30;
         }

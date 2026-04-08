@@ -1,5 +1,6 @@
 package service;
 
+import comprovante.ComprovanteEmissor;
 import model.Reserva;
 import notificacao.Notificador;
 import pagamento.Pagamento;
@@ -8,26 +9,31 @@ import repository.ReservaRepositorio;
 public class ReservaService {
 
     private ReservaValidador validador;
-    private CalculadoraReserva calculadora;
     private ReservaRepositorio repositorio;
     private Notificador notificador;
+    private ComprovanteEmissor emissor;
 
     public ReservaService(ReservaValidador validador,
-            CalculadoraReserva calculadora,
             ReservaRepositorio repositorio,
-            Notificador notificador) {
+            Notificador notificador,
+            ComprovanteEmissor emissor) {
         this.validador = validador;
-        this.calculadora = calculadora;
         this.repositorio = repositorio;
         this.notificador = notificador;
+        this.emissor = emissor;
     }
 
     public void processar(Reserva reserva, Pagamento pagamento) {
         validador.validar(reserva);
-        double total = calculadora.calcularTotal(reserva);
+
+        repositorio.reservaExistente(reserva);
+
+        double total = reserva.getValor();
         pagamento.pagar(total);
-        String comprovante = repositorio.salvar(reserva);
+
         notificador.notificar(reserva.getUsuario());
-        System.out.println("Comprovante: " + comprovante);
+
+        String comprovante = repositorio.salvar(reserva);
+        emissor.emitir(comprovante);
     }
 }

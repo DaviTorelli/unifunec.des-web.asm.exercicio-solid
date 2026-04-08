@@ -24,7 +24,6 @@ public class ClasseGenerica {
             return;
         }
 
-        // TODO
         for (String r : reservas) {
             if (r.contains(sala)) {
                 System.out.println("Sala já reservada.");

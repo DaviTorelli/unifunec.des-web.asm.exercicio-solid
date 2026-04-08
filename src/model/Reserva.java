@@ -1,5 +1,7 @@
 package model;
 
+import service.CalculadoraReserva;
+
 public class Reserva {
     String usuario;
     String sala;
@@ -7,15 +9,13 @@ public class Reserva {
     int horas;
     boolean projetor;
     String formaPagamento;
-    double valor = 0;
 
-    public Reserva(String usuario, String sala, String tipoSala, int horas, boolean projetor, String formaPagamento, double valor) {
+    public Reserva(String usuario, String sala, String tipoSala, int horas, boolean projetor, String formaPagamento) {
         this.usuario = usuario;
         this.sala = sala;
         this.tipoSala = tipoSala;
         this.horas = horas;
         this.projetor = projetor;
-        this.valor = valor;
         this.formaPagamento = formaPagamento;
     }
 
@@ -44,6 +44,7 @@ public class Reserva {
     }
 
     public double getValor() {
-        return valor;
+        CalculadoraReserva calculadora = new CalculadoraReserva();
+        return calculadora.calcularTotal(this);
     }
 }
