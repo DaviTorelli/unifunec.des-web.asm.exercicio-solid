@@ -41,6 +41,14 @@ public class Main {
         false,
         "Cartão de Crédito");
 
+    Reserva outraReserva = new Reserva(
+        "Maria",
+        "Sala B",
+        "reunião",
+        3,
+        true,
+        "Pix");
+
     ReservaValidador validador = new ReservaValidador();
     ReservaRepositorio repositorio = new ReservaRepositoryMemoria();
     Notificador notificador = new EmailNotificador();
@@ -62,5 +70,8 @@ public class Main {
 
     System.out.println("\n3️⃣ - - - RESERVA 3 (CAMPOS INVÁLIDOS, DEVE GERAR ERRO) - - - 3️⃣");
     service.processar(reservaCamposInvalidos);
+
+    System.out.println("\n4️⃣ - - - RESERVA 4 (DIFERENTE, DEVE SER PROCESSADA) - - - 4️⃣");
+    service.processar(outraReserva);
   }
 }
