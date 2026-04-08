@@ -36,10 +36,13 @@ public class ReservaService {
   }
 
   public void processar(Reserva reserva) {
-    validador.validar(reserva);
+    if (validador.validar(reserva)) {
+      return;
+    }
 
     if (repositorio.isSalaReservada(reserva)) {
-      throw new IllegalStateException("Sala já reservada.");
+      System.out.println("🔴 Erro: Sala já reservada 🔴");
+      return;
     }
 
     pagamento.pagar(reserva.getValor());

@@ -33,13 +33,13 @@ public class Main {
         true,
         "Pix");
 
-    Reserva reservaRepetida = new Reserva(
-        "João",
-        "Sala A",
-        "laboratorio",
-        2,
-        true,
-        "Pix");
+    Reserva reservaCamposInvalidos = new Reserva(
+        "",
+        "",
+        "",
+        1,
+        false,
+        "Cartão de Crédito");
 
     ReservaValidador validador = new ReservaValidador();
     ReservaRepositorio repositorio = new ReservaRepositoryMemoria();
@@ -54,7 +54,13 @@ public class Main {
         emissor,
         pagamento);
 
+    System.out.println("1️⃣ - - - RESERVA 1 - - - 1️⃣");
     service.processar(reserva);
-    service.processar(reservaRepetida);
+
+    System.out.println("\n2️⃣ - - - RESERVA 2 (REPETIDA, DEVE GERAR ERRO) - - - 2️⃣");
+    service.processar(reserva);
+
+    System.out.println("\n3️⃣ - - - RESERVA 3 (CAMPOS INVÁLIDOS, DEVE GERAR ERRO) - - - 3️⃣");
+    service.processar(reservaCamposInvalidos);
   }
 }

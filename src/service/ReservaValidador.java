@@ -5,21 +5,29 @@ import model.Reserva;
 
 public class ReservaValidador {
 
-  public void validar(Reserva reserva) {
+  public boolean validar(Reserva reserva) {
+    boolean isErro = false;
+
     if (reserva.getUsuario() == null || reserva.getUsuario().trim().isEmpty()) {
-      throw new IllegalArgumentException("Usuário inválido.");
+      System.out.println("⛔ Erro: Usuário inválido ⛔");
+      isErro = true;
     }
 
     if (reserva.getSala() == null || reserva.getSala().trim().isEmpty()) {
-      throw new IllegalArgumentException("Sala inválida.");
+      System.out.println("⛔ Erro: Sala inválida ⛔");
+      isErro = true;
     }
 
     if (reserva.getHoras() <= 0) {
-      throw new IllegalArgumentException("Horas inválidas.");
+      System.out.println("⛔ Erro: Horas inválidas ⛔");
+      isErro = true;
     }
 
     if (!reserva.getFormaPagamento().equalsIgnoreCase("pix")) {
-      throw new IllegalArgumentException("Pagamento inválido.");
+      System.out.println("⛔ Erro: Pagamento inválido ⛔");
+      isErro = true;
     }
+
+    return isErro;
   }
 }
